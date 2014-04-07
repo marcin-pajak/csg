@@ -26,19 +26,22 @@ and only incidentally for computers to execute.
 
 #### Semantics
 
-Don't try to name classes to get more semantic code. Semantics is about elements only. Attributes should be sensible for other developers, not machines
+Don't try to name classes to get more semantic code. Semantics is about elements only. Attributes should be sensible for other developers, not machines.
 
-#### Keep your selectors short
+#### Specificity of the selectors
 
 To avoid problems with performance, maintanence and entanglement in general, do not use nested selectors.
 What is more, it helps to avoid location dependency. 
 
 #### The Single Responsibility Principle
 
-Use OOCSS and prefixed classes for differend layers and behaviours in your code.
+Use OOCSS and prefixed classes for different layers and behaviours in your code.
 
 ### Progressive enhancement
-Use Modernizr for feature detection 
+Use Modernizr to detect implemented features of the browser.
+
+**Important**
+There is a grunt task to generate custom Modernizr build.
 
 ### Grid
 
@@ -116,7 +119,6 @@ To avoid long, hard to read and maintain names of classes, keep only root block 
 * Use lowercase and shorthand hex values, e.g., #aaa.
 * Use single or double quotes consistently. Preference is for double quotes, e.g., content: "".
 * Quote attribute values in selectors, e.g., input[type="checkbox"].
-* Where allowed, avoid specifying units for zero-values, e.g., margin: 0.
 * Include a space after each comma in comma-separated property or function values.
 * Include a semi-colon at the end of the last declaration in a declaration block.
 * Place the closing brace of a ruleset in the same column as the first character of the ruleset.
@@ -163,6 +165,9 @@ indent_size = 2
  * ---------------------------------------------------------------- */ 
 ```
 
+Use one blink line after and two before (if it's not a first line of the stylesheet) primary comment.
+
+
 #### Secondary comment style
 
 ```css
@@ -171,11 +176,17 @@ indent_size = 2
 * --------------------------- */ 
 ```
 
+Use one blink line after and before (if it's not a first line of the stylesheet) secondary comment.
+
+
 #### Inline LESS comment style
 
 ```less
 // Comment
 ```
+
+Use one blink line before (if it's not a first line of the stylesheet) inline comment.
+
 
 ### Vendor Prefixes
 
@@ -245,7 +256,25 @@ It's allowed to style IDs in edge cases, but only as a key selector.
 
 To avoid problems with overriding helper classes, make their specificity higher by including `#root` id added on **body** element.
 
+### Media queries
 
+Always keep styles related to each "module" in one place. All media queries should be nested inside selector.
+
+```less
+/* Good */
+.element {
+    @media (min-width: @breakpoint) {
+    }
+}
+```
+
+```css
+/* Bad */
+@media (min-width: @breakpoint) {
+    .element {
+    }
+}
+```
 
 ## HTML principles
 
