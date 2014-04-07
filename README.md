@@ -1,4 +1,7 @@
 ## SmartRecruiters  
+
+![SmartRecruiters](https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/p160x160/393735_10151047695605780_1051448429_n.png)
+
 # HTML/CSS Code Style Guide
 
 >Code Style Guide bridges the gap between framework and developer
@@ -6,7 +9,7 @@
 The following document contains ruleset of writing both HTML and CSS code in SmartRecruiters. It's based on best practices and strongly relies on idiomatic CSS and HTML principles published by Nicholas Gallagher. 
 
 <br />
-> Programs are meant to be read by humans
+> Programs are meant to be read by humans <br />
 and only incidentally for computers to execute.  
 **Harold Abelson and Gerald Jay Sussman**  
 *Structure and Interpretation of Computer Programs, 1984*
@@ -52,32 +55,33 @@ However, we found much more efficient and easier to name BEM items as follow:
 
 * **Element**: `.foo-bar`
 
-* **Modifier**: `.foo--bar`
+* **Modifier**: `.foo--baz`
 
 Use lower CamelCase if you need to write a class with multiple words.
 
-**Good**
+
 ```css
+/* Good */
 .fooBar
-.fooBar-bar
-.fooBar--bar
+.fooBar-baz
+.fooBar--qux
 ```
 
-**Bad**
 ```css
+/* Bad */
 .foo-bar
-.foo-bar-bar
-.foo-bar--bar
+.foo-bar-baz
+.foo-bar--qux
 
 .foo_bar
-.foo_bar-bar
-.foo_bar--bar
+.foo_bar-baz
+.foo_bar--qux
 ```
 
 To avoid long, hard to read and maintain names of classes, keep only root block name in elements.
 
-**Good**
 ```html
+<!-- Good -->
 <div class="rating">
 	<div class="rating-hedaer">
 		<h3 class="rating-title"></h3>
@@ -167,9 +171,9 @@ indent_size = 2
 * --------------------------- */ 
 ```
 
-#### Inline comment style
+#### Inline LESS comment style
 
-```css
+```less
 // Comment
 ```
 
@@ -177,35 +181,37 @@ indent_size = 2
 
 Avoid using vendor prefixes directly in selector rules. It will be added automatically during build process.
 
+### Box model
+
+Keep in mind there is border-box layout model applied to all elements.
 
 ### Units
 
-Use **_rems_** where possible. Do not write any fallbacks in pixels in your styles directly. It will be added automatically  during build process.
+* Use **_rems_** where possible. Do not write any fallbacks in pixels in your styles directly. It will be added automatically during build process.  
+To simplify calculations, use _font-size: 62.5%_ on the root element (html, not body) what makes 1rem equal to 10px.
 
-To simplify calculations, use _font-size:_ % on the root element (html, not body) what makes 1rem equal to 10px
+* Do not use unit with 0 values
 
-Do not use unit with 0 values
-
-**Good**
 ```css
+/* Good */
 padding: 0 10%;
 ```
 
-**Bad**
 ```css
+/* Bad */
 padding: 0% 10%;
 padding: 0px 10%;
 ```
 
-Do not use unit with line-height
+* Do not use unit with line-height
 
-**Good**
 ```css
+/* Good */
 line-height: 1.5;
 ```
 
-**Bad**
 ```css
+/* Bad */
 line-height: 1.5rem;
 line-height: 150%;
 ```
@@ -214,15 +220,15 @@ line-height: 150%;
 
 It's allowed to style IDs in edge cases, but only as a key selector.
 
-**Good**
 ```css
+/* Good */
 #foo {
 
 }
 ```
 
-**Bad**
 ```css
+/* Bad */
 #foo .bar {
 
 }
@@ -242,6 +248,19 @@ To avoid problems with overriding helper classes, make their specificity higher 
 
 
 ## HTML principles
+
+### Format
+
+**Idiomatic rules:**
+
+* Always use lowercase tag and attribute names.
+* Write one discrete, block-level element per line.
+* Use one additional level of indentation for each nested block-level element.
+* Use valueless boolean attributes (e.g. checked rather than checked="checked").
+* Always use double quotes to quote attribute values.
+* Omit the type attributes from link stylesheet, style and script elements.
+* Always include closing tags.
+
 
 ### Doctype
 
@@ -269,9 +288,9 @@ To target older IE, use conditional comments and specific classes as listed belo
 Use `js-` prefix for JavaScript hooks.
 Do not ever style js- classes in your stylesheet.
 
-#### Smart Testing
+#### Smart Testing Framework
 
-Use  `st-` / `sr-` / `x-` prefix in IDs used for Smart Testing Framework hooks
+Use `st-` prefix in IDs used for Smart Testing Framework hooks
 
 ### Accessibility
 
@@ -296,19 +315,19 @@ Use button element rather than a link with `href="#"` as a hook for JavaScript i
 ### Page layout structure
 
 ```html
-    <div class="site site--home">
-		<header class="site-hedaer" role="banner">
-            <nav class="nav" role="navigation">
-                <ul class="nav-list"></ul>
-            </nav>
-		</header>
-		<div class="site-container">
-            <section class="main" role="main">
-            </section>
-		</div>
-		<footer class="site-footer" role="contentinfo">
-		</footer>
-	</div>
+<div class="site site--home">
+    <header class="site-hedaer" role="banner">
+        <nav class="nav" role="navigation">
+            <ul class="nav-list"></ul>
+        </nav>
+    </header>
+    <div class="site-container">
+        <section class="main" role="main">
+        </section>
+    </div>
+    <footer class="site-footer" role="contentinfo">
+    </footer>
+</div>
 ```
 
 
