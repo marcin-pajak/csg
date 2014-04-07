@@ -85,11 +85,11 @@ To avoid long, hard to read and maintain names of classes, keep only root block 
 </div>
 ```
 
-**Bad**
 ```html
+<!-- Bad -->
 <div class="rating">
 	<div class="rating-header">
-		<h3 class="raring-header-title"></h3>
+		<h3 class="rating-header-title"></h3>
 	</div>
 </div>
 ```
@@ -102,24 +102,75 @@ To avoid long, hard to read and maintain names of classes, keep only root block 
 ### Format
 * Use four spaces for indentaction
 
+**Idiomatic rules**
+
+* Use one discrete selector per line in multi-selector rulesets.
+* Include a single space before the opening brace of a ruleset.
+* Include one declaration per line in a declaration block.
+* Use one level of indentation for each declaration.
+* Include a single space after the colon of a declaration.
+* Use lowercase and shorthand hex values, e.g., #aaa.
+* Use single or double quotes consistently. Preference is for double quotes, e.g., content: "".
+* Quote attribute values in selectors, e.g., input[type="checkbox"].
+* Where allowed, avoid specifying units for zero-values, e.g., margin: 0.
+* Include a space after each comma in comma-separated property or function values.
+* Include a semi-colon at the end of the last declaration in a declaration block.
+* Place the closing brace of a ruleset in the same column as the first character of the ruleset.
+* Separate each ruleset by a blank line.
+
+Use EditorConfig plugin for your IDE to make sure you are using correct code formating settings.
+
+**EditorConfig website:**
+
+[Link](http://editorconfig.org/ "Title")
+
+**EditorConfig settings:**
+
+```
+# editorconfig.org
+root = true
+
+# Common rules
+[*]
+indent_size = 4
+indent_style = space
+end_of_line = lf
+charset = utf-8
+tab_width = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
+```
+
 ### Comments
 
 #### Primary comment style
 
 ```css
-
+/* ----------------------------------------------------------------
+    COMPONENT - Button
+    
+    @date
+    @author
+ * ---------------------------------------------------------------- */ 
 ```
 
 #### Secondary comment style
 
 ```css
-
+/* --------------------------
+   COMPONTENT Dependencies
+* --------------------------- */ 
 ```
 
 #### Inline comment style
 
 ```css
-
+// Comment
 ```
 
 ### Vendor Prefixes
